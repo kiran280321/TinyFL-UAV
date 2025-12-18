@@ -1,51 +1,19 @@
-🚁 TinyFL-UAV: Federated Learning for Edge-Intelligent UAV Swarm Systems
-📌 Project Overview
+🚁 TinyFL-UAV: Federated Learning for Edge-Intelligent UAV Swarms
 
-TinyFL-UAV is a final-year engineering project that demonstrates how Tiny Machine Learning (TinyML) and Federated Learning (FL) can be combined to enable real-time, privacy-preserving intelligence on Unmanned Aerial Vehicles (UAVs).
+A UAV edge intelligence system that combines TinyML and Federated Learning to enable real-time, privacy-preserving AI inference directly on drone hardware. The project demonstrates collaborative learning across UAVs without sharing raw data, reducing latency and communication overhead.
 
-The project focuses on deploying lightweight deep learning models directly on UAVs and allowing multiple UAVs to collaboratively learn using Federated Learning, without sharing raw image data. This approach reduces latency, preserves privacy, and supports deployment in remote or low-connectivity environments.
+🚀 Features
 
-🎯 Motivation
+🧠 Lightweight TinyML CNN model for on-device inference
+🤝 Federated Learning using Flower framework
+🔒 Privacy-preserving training (no raw data sharing)
+⚡ Low-latency edge inference with TFLite
+📡 Reduced communication overhead via model compression
+🌍 UAV swarm mobility and network delay simulation
+🎨 Streamlit UI for real-time image classification
 
-Traditional UAV-based AI systems depend heavily on cloud servers for processing, which leads to:
-
-High latency
-
-Network dependency
-
-Privacy risks
-
-Poor performance in remote locations
-
-This project addresses these challenges by:
-
-Running optimized TinyML models on UAV hardware
-
-Using Federated Learning to share only model updates
-
-Reducing communication overhead using model compression
-
-🧠 Key Technologies Used
-
-TinyML – Lightweight CNN models for edge inference
-
-Federated Learning (Flower Framework) – Distributed model training
-
-TensorFlow & TensorFlow Lite – Model training and deployment
-
-Model Optimization – Pruning, Quantization
-
-Python – Core development language
-
-Simulation Tools – UAV mobility and network delay analysis
-
-Streamlit – User interface for real-time image classification
-
-📂 Project Folder Structure
+📁 Project Structure
 TinyFL-UAV/
-│── README.md
-│── requirements.txt
-│
 ├── data/
 │   ├── smoke/
 │   └── no_smoke/
@@ -57,8 +25,7 @@ TinyFL-UAV/
 │   ├── model_full.h5
 │   ├── model_pruned.h5
 │   ├── model_quant.tflite
-│   ├── model_micro.tflite
-│   └── model_micro.cc
+│   └── model_micro.tflite
 │
 ├── federated_server/
 │   ├── server_flower.py
@@ -67,12 +34,11 @@ TinyFL-UAV/
 │
 ├── uav_clients/
 │   ├── client_flower.py
-│   ├── ros_image_listener.py
 │   └── uav_config.json
 │
 ├── simulation/
-│   ├── ns3_delay_sim.py
 │   ├── uav_mobility_sim.py
+│   ├── ns3_delay_sim.py
 │   └── fl_round_visualizer.py
 │
 ├── gazebo_world/
@@ -83,38 +49,27 @@ TinyFL-UAV/
 │   ├── accuracy_plot.png
 │   ├── latency_plot.png
 │   ├── mobility_map.png
-│   ├── comm_overhead.png
-│   └── logs.txt
+│   └── comm_overhead.png
 │
-└── notebooks/
-    └── full_training_pipeline.ipynb
+├── app.py                  # Streamlit UI
+├── requirements.txt
+└── README.md
 
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
-git clone https://github.com/your-username/TinyFL-UAV.git
+🛠 Setup Instructions
+Clone the Repository
+git clone https://github.com/kiran280321/TinyFL-UAV.git
 cd TinyFL-UAV
 
-2️⃣ Install Dependencies
+Install Dependencies
 pip install -r requirements.txt
 
-🏋️ Model Training (TinyML)
-
-Train and prune the CNN model:
-
+🧪 Train TinyML Model
 cd tinyml_model
 python train_cnn_pruned.py
-
-
-Quantize the trained model:
-
 python quantize_model.py
-
-
-Convert to TensorFlow Lite:
-
 python convert_to_tflite.py
 
-🌐 Federated Learning Execution
+🌐 Run Federated Learning
 Start Federated Server
 cd federated_server
 python server_flower.py
@@ -124,55 +79,44 @@ cd uav_clients
 python client_flower.py
 
 
-Each UAV trains locally and sends only compressed model updates to the server.
+Each UAV trains locally and shares compressed model updates with the server.
 
-🖥️ Streamlit User Interface
-
-Run the real-time image classification UI:
-
+🖥 Run Streamlit App
 python -m streamlit run app.py
 
 
-Features:
+👉 App runs at: http://localhost:8501
 
-Upload UAV images
+📊 Results
 
-Real-time smoke detection
+Model Accuracy: ~85–90% after FL convergence
 
-Confidence score display
+Latency: Significantly lower than cloud-based inference
 
-📊 Results & Performance
+Communication Overhead: Reduced via quantized updates
 
-Model Accuracy: ~85–90% after federated convergence
+Privacy: No image data transmitted
 
-Latency: Reduced significantly compared to cloud-based inference
+Graphs available in the results/ folder.
 
-Communication Overhead: Lowered using quantized model updates
+🎯 Applications
 
-Privacy: No raw images shared between UAVs
+🔥 Forest fire & smoke detection
+🚑 Disaster response & rescue missions
+🌾 Agricultural crop monitoring
+🛡 Border surveillance
+🏙 Smart city aerial monitoring
 
-Graphs and logs are available in the results/ folder.
+🧠 Skills Demonstrated
 
-🚀 Applications
+TinyML & Model Optimization
+Federated Learning
+Edge AI & UAV Systems
+Python & TensorFlow
+Simulation & Visualization
+Streamlit Deployment
 
-Forest fire and smoke detection
+👨‍🎓 Authors
 
-Disaster response and search & rescue
-
-Agricultural crop health monitoring
-
-Border and perimeter surveillance
-
-Smart city aerial monitoring
-
-🔮 Future Scope
-
-Deployment on real UAV hardware
-
-Larger UAV swarms with dynamic participation
-
-Secure aggregation and differential privacy
-
-Reinforcement learning for autonomous navigation
-
-Integration with IoT and ground sensors
+Made with ❤️ by
+Kiran Y
