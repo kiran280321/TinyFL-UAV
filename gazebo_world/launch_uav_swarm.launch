@@ -1,0 +1,24 @@
+<launch>
+
+  <!-- Launch Gazebo with custom UAV sensors world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name"
+         value="$(find tinyfl_uav)/gazebo_world/uav_sensors.world"/>
+  </include>
+
+  <!-- Spawn multiple UAVs for federated setup -->
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_uav1"
+        args="-file $(find tinyfl_uav)/models/uav/uav_model.sdf -sdf -model uav1 -x 0 -y 0 -z 1" />
+
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_uav2"
+        args="-file $(find tinyfl_uav)/models/uav/uav_model.sdf -sdf -model uav2 -x 2 -y 2 -z 1" />
+
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_uav3"
+        args="-file $(find tinyfl_uav)/models/uav/uav_model.sdf -sdf -model uav3 -x -2 -y 2 -z 1" />
+
+  <!-- Federated Learning Client Nodes -->
+  <node pkg="tinyfl_uav" type="client_flower.py" name="uav1_client"/>
+  <node pkg="tinyfl_uav" type="client_flower.py" name="uav2_client"/>
+  <node pkg="tinyfl_uav" type="client_flower.py" name="uav3_client"/>
+
+</launch>
